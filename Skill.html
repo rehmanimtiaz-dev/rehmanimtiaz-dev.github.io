@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill | Rehman Imtiaz | Full-Stack Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode based on 'dark' class on <html>
+            theme: {
+                extend: {
+                    colors: {
+                        // Custom Palette based on user's image
+                        'primary-dark': '#800d1c',      // Dark Red/Maroon
+                        'primary-accent': '#c8102e',    // Bright Red (Used for the main Red color)
+                        'background-light': '#f8f2e2',  // Cream/Light Beige
+                        'background-dark': '#102b46',   // Deep Navy Blue
+                        'secondary-accent': '#74a8c8',  // Light Blue/Sky Blue
+                        // Customizing the light background card color seen in the screenshot
+                        'card-light': '#ffffff',        // White
+                        'card-shadow-light': 'rgba(215, 215, 215, 0.5)', // Subtle shadow
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles for smooth transitions */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Styling the scroll to be smooth for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar styling (optional but improves aesthetics) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background-light');
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: theme('colors.background-dark');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.secondary-accent');
+            border-radius: 4px;
+        }
+
+        /* Custom utility for the red line under titles */
+        .title-line {
+            position: absolute;
+            left: 50%;
+            bottom: -8px; /* Slightly higher for a better look */
+            height: 3px; /* Slightly thinner */
+            width: 5rem;
+            background-color: theme('colors.primary-accent');
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-background-dark dark:bg-background-dark dark:text-background-light">
+
+    <header class="sticky top-0 z-50 shadow-md bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-extrabold text-primary-accent flex items-center space-x-2 rounded-lg p-1 transition duration-300 hover:scale-[1.01]">
+                <span class="p-1 text-background-light bg-primary-accent rounded-md">RI</span>
+                <span>Rehman Imtiaz</span>
+            </a>
+
+            <div class="hidden sm:flex space-x-8 items-center text-lg font-medium">
+                <a href="index.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Home</a>
+                <a href="Project.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Projects</a>
+                
+                <a href="Skill.html" class="nav-link text-primary-accent border-b-2 border-primary-accent pb-1 transition duration-150 rounded-lg p-2">Skills</a>
+                
+                <a href="Experince.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Experience</a>
+                
+                <a href="Contect.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Contact</a>
+
+                <button id="theme-toggle-desktop" class="p-2 ml-4 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                    <span id="sun-moon-icon-desktop"></span>
+                </button>
+            </div>
+
+            <div class="sm:hidden flex items-center space-x-3">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                    <span id="sun-moon-icon-mobile"></span>
+                </button>
+
+                <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-background-dark/10 dark:hover:bg-background-light/10 transition duration-150">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden sm:hidden absolute w-full bg-background-light dark:bg-background-dark shadow-lg">
+            <a href="index.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Home</a>
+            <a href="Project.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Projects</a>
+            <a href="Skill.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Skills</a>
+            <a href="Experince.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Experience</a>
+            <a href="Contect.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Contact</a>
+        </div>
+    </header>
+
+    <main id="skills" class="min-h-screen pt-12 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 relative">
+                My Skills
+                <div class="title-line"></div>
+            </h1>
+
+            <div class="space-y-16">
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-8 relative inline-block">
+                        Programming Languages
+                        <div class="absolute bottom-0 left-0 h-1 w-full bg-primary-accent/50 rounded-full"></div>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i  class="w-7 h-7 text-primary-accent"><img src="Assets/javascript.png" alt="javascript"></i>
+                                <h3 class="text-xl font-semibold">JavaScript</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Highly skilled with modern JS, including ES6+ features and asynchronous programming for front-end and back-end development.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="csharp" class=" w-7 h-7 text-primary-accent"><img src="Assets/charp.png" alt="Csharp"></i> 
+                                <h3 class="text-xl font-semibold">ASP.NET CORE</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Building fast, cross-platform web APIs and applications (MVC, Razor Pages, Blazor) with C#, focusing on performance and modern architecture.</p>
+                        </div>
+                       <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="php" class="w-7 h-7 text-primary-accent"><img src="Assets/php.png" alt="php"></i> 
+                                <h3 class="text-xl font-semibold">PHP</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Extensive experience in server-side web development using frameworks like Laravel and building content management systems like WordPress.</p>
+                        </div>
+                       
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="=" class="w-7 h-7 text-primary-accent"><img src="Assets/typesscript.png" alt="typescript"></i>
+                                <h3 class="text-xl font-semibold">TypeScript</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Extensive use for large-scale, type-safe frontend and backend applications, improving code quality.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="dart" class="w-7 h-7 text-primary-accent"><img src="Assets/dart.png" alt="dart"></i> 
+                                <h3 class="text-xl font-semibold">Dart</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Experience using the language for building natively compiled, multi-platform applications with Flutter (mobile, web, and desktop) and server-side code.</p>
+                        </div>
+                        <!-- <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="rocket" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">Go (Golang)</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Familiar with concurrent programming for building fast, reliable, and efficient network services.</p>
+                        </div> -->
+                    </div>
+                </section>
+
+                <hr class="border-t border-secondary-accent/30 dark:border-secondary-accent/20">
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-8 relative inline-block">
+                        Web Development
+                        <div class="absolute bottom-0 left-0 h-1 w-full bg-primary-accent/50 rounded-full"></div>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="layout" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">HTML5/CSS3</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Creating semantic, accessible, and responsive layouts with modern CSS techniques like Flexbox and Grid.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="code" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">ASP.NET MVC </h3>
+                            </div>
+                            <p class="text-sm opacity-80">Experience in building scalable, pattern-based web applications and APIs using the Model-View-Controller architecture on the .NET framework.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="sparkles" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">Tailwind CSS</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Rapidly building custom, modern, and responsive UIs without ever leaving your HTML.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="layout-grid" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">Bootstrap 5</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Proficient in rapidly designing modern, mobile-first, and responsive user interfaces using its utility classes and grid system.</p>
+                        </div>
+                         <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="mouse-pointer" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">jQuery</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Proficient in DOM manipulation, event handling, AJAX interactions, and creating basic animations using the simplified JavaScript library.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="layout-grid" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">Figma (UI/UX)</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Expertise in collaborative interface design, interactive prototyping, and creating scalable design systems (components, variants, and auto layout).</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="webhook" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">PHP/Laravel</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Experience with PHP frameworks, including Laravel for rapid development of robust web applications.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-secondary-accent/30 dark:border-secondary-accent/20">
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-8 relative inline-block">
+                        Databases & Tools
+                        <div class="absolute bottom-0 left-0 h-1 w-full bg-primary-accent/50 rounded-full"></div>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="database" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">MongoDB</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Designing and managing non-relational database structures for flexible, high-volume applications.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="database" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">MySQL</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Experience in designing and managing relational databases, writing optimized SQL queries, and handling data migration for web applications (XXAMP). </p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="server-cog" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">SQL/NoSQL</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Advanced feature utilization and optimization for both relational (SQL) and non-relational (NoSQL) databases.</p>
+                        </div>
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="git-branch" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">Git/GitHub</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Expert in version control, branching, merging, and collaborative development workflows.</p>
+                        </div>
+                       <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="server" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">SQL Server</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Proficiency in T-SQL, database administration, designing complex schemas, and ensuring high-performance data storage for enterprise systems.</p>
+                        </div>
+
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="layout-list" class="w-7 h-7 text-primary-accent"></i> 
+                                <h3 class="text-xl font-semibold">Office Automation (MS Office)</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Highly proficient in essential productivity tools: data analysis and reporting (Excel), professional document creation (Word), and compelling presentations (PowerPoint).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-secondary-accent/30 dark:border-secondary-accent/20">
+
+             
+                <section>
+                    <h2 class="text-2xl font-bold mb-8 relative inline-block">
+                        DevOps & Deployment
+                        <div class="absolute bottom-0 left-0 h-1 w-full bg-primary-accent/50 rounded-full"></div>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                       <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="server" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">Apache HTTP Server</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Proficient in configuring virtual hosts, managing modules (mod_rewrite, mod_ssl), and optimizing the widely used server for dynamic web hosting.</p>
+                        </div>
+                       
+                        <div class="skill-card p-6 bg-card-light dark:bg-background-dark/50 rounded-xl border border-primary-accent/10 dark:border-secondary-accent/20">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i data-lucide="key" class="w-7 h-7 text-primary-accent"></i>
+                                <h3 class="text-xl font-semibold">SSL Hardening</h3>
+                            </div>
+                            <p class="text-sm opacity-80">Implementing and configuring robust SSL/TLS protocols to ensure secure communication.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="Assets/Script.js"> </script>
+
+  <footer class="mt-20 py-8 bg-background-light dark:bg-background-dark border-t border-secondary-accent/20 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:flex justify-between items-center text-center sm:text-left">
+            <div class="mb-4 sm:mb-0">
+                <p class="text-xl font-extrabold text-background-dark dark:text-background-light">Rehman Imtiaz</p>
+                <p class="text-sm text-primary-accent dark:text-secondary-accent">Computer Science Student & Developer</p>
+            </div>
+
+            <div class="hidden md:flex space-x-6 text-md font-medium text-background-dark dark:text-background-light opacity-80">
+                <a href="index.html" class="hover:text-primary-accent transition duration-150">Home</a>
+                <a href="Project.html" class="hover:text-primary-accent transition duration-150">Projects</a>
+                <a href="Skill.html" class="hover:text-primary-accent transition duration-150">Skills</a>
+                <a href="Experince.html" class="hover:text-primary-accent transition duration-150">Experience</a>
+                <a href="Contect.html" class="hover:text-primary-accent transition duration-150">Contact</a>
+            </div>
+
+            <div class="flex justify-center sm:justify-end space-x-3 text-xl align-center text-center">
+                <a href="https://github.com/rehmanimtiaz110" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"> <i class="w-7 h-6 fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rehman-imtiaz/?originalSubdomain=pk" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"> <i class="w-7 h-6 fa-brands fa-linkedin-in"></i></a>
+                
+                <a href="https://wa.me/+923257030010" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300">
+                    <i class="fa-brands fa-whatsapp w-7 h-6"></i>
+                </a>
+                
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 mt-6 border-t border-secondary-accent/10 pt-4 text-center">
+            <p class="text-sm opacity-60">&copy; 2025 Rehman Imtiaz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Assets/Script.js"> </script>
+
+</body>
+</html>

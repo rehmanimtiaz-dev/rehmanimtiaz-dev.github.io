@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Rehman Imtiaz | Full-Stack Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode based on 'dark' class on <html>
+            theme: {
+                extend: {
+                    colors: {
+                        // Custom Palette based on user's image
+                        'primary-dark': '#800d1c',      // Dark Red/Maroon
+                        'primary-accent': '#c8102e',    // Bright Red (Used for the main Red color)
+                        'background-light': '#f8f2e2',  // Cream/Light Beige
+                        'background-dark': '#102b46',   // Deep Navy Blue
+                        'secondary-accent': '#74a8c8',  // Light Blue/Sky Blue
+                        // Customizing the light background card color seen in the screenshot
+                        'card-light': '#ffffff',        // White
+                        'card-shadow-light': 'rgba(215, 215, 215, 0.5)', // Subtle shadow
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles for smooth transitions */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Styling the scroll to be smooth for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar styling (optional but improves aesthetics) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background-light');
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: theme('colors.background-dark');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.secondary-accent');
+            border-radius: 4px;
+        }
+
+        /* Custom utility for the red line under titles */
+        .title-line {
+            position: absolute;
+            left: 50%;
+            bottom: -8px; /* Slightly higher for a better look */
+            height: 3px; /* Slightly thinner */
+            width: 5rem;
+            background-color: theme('colors.primary-accent');
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+
+        /* Project card styling */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Filter button styling */
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        .filter-btn.active {
+            background-color: theme('colors.primary-accent');
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-background-dark dark:bg-background-dark dark:text-background-light">
+    <header class="sticky top-0 z-50 shadow-md bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold text-primary-accent flex items-center space-x-2 rounded-lg p-1 transition duration-300 hover:scale-[1.01]">
+                <span class="p-1 text-background-light bg-primary-accent rounded-md">RI</span>
+                <span>Rehman Imtiaz</span>
+            </a>
+
+            <div class="hidden sm:flex space-x-8 items-center text-lg font-medium">
+                <a href="index.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Home</a>
+                <a href="Project.html" class="nav-link text-primary-accent border-b-2 border-primary-accent pb-1 transition duration-150 rounded-lg p-2">Projects</a>
+                <a href="Skill.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Skills</a>
+                <a href="Experince.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Experience</a>
+                <a href="Contect.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Contact</a>
+
+                <button id="theme-toggle-desktop" class="p-2 ml-4 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                    <span id="sun-moon-icon-desktop"></span>
+                </button>
+            </div>
+
+            <div class="sm:hidden flex items-center space-x-3">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                    <span id="sun-moon-icon-mobile"></span>
+                </button>
+
+                <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-background-dark/10 dark:hover:bg-background-light/10 transition duration-150">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden sm:hidden absolute w-full bg-background-light dark:bg-background-dark shadow-lg">
+            <a href="index.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Home</a>
+            <a href="Project.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Projects</a>
+            <a href="Skill.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Skills</a>
+            <a href="Experince.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Experience</a>
+            <a href="Contect.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Contact</a>
+        </div>
+    </header>
+
+  
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Title -->
+            <div class="text-center mb-12 relative">
+                <h1 class="text-4xl font-extrabold text-gray-800 mb-4 text-background-dark dark:text-background-light">My Portfolio Projects</h1>
+                <div class="title-line"></div>
+                <p class="mt-4 text-gray-600 text-background-dark dark:text-background-light">A collection of my work, from concept to deployment.</p>
+            </div>
+
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium" data-filter="all">All Projects</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" data-filter="fullstack">Full Stack</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" data-filter="frontend">Frontend</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" data-filter="application">Application</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" data-filter="game-dev">Game Development</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" data-filter="upcoming">Upcoming</button>
+            </div>
+        
+            <!-- Project Grid Container: Now using CSS Grid -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- 
+                =================================================
+                CARD 1: UPCOMING PROJECT (Full Stack E-commerce)
+                =================================================
+                -->
+                <!-- w-full ensures it takes full grid column space -->
+                <div class="project-card w-full bg-white rounded-xl shadow-2xl overflow-hidden transition-all duration-300 opacity-80 hover:shadow-gray-400/50 hover:scale-[1.01]" data-category="fullstack upcoming">
+                    
+                    <!-- Project Placeholder/Image - Dimmed -->
+                    <div class="h-48 md:h-56 w-full bg-gray-100 relative">
+                        <img 
+                            src="https://placehold.co/800x450/4B5563/D1D5DB?text=Concept+Design" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/4B5563/D1D5DB?text=Concept+Image';"
+                            alt="Upcoming Project Concept Image" 
+                            class="w-full h-full object-cover opacity-30"
+                        >
+                        <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-gray-500 tracking-wider">UPCOMING</span>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                            Full Stack E-commerce Website
+                        </h3>
+
+                        <p class="text-gray-600 mb-6 text-base">
+                            The next major project: a complete E-commerce system built with **ASP.NET Core API** (C#) for the backend and **Dart/Flutter** (Web) for the modular frontend.
+                        </p>
+
+                        <!-- Disabled Action Button -->
+                        <div class="flex">
+                            <a href="#" 
+                               role="button"
+                               aria-disabled="true"
+                               onclick="return false;"
+                               class="flex-1 text-center px-6 py-3 bg-gray-400 cursor-not-allowed text-sm font-semibold rounded-lg text-gray-800 transition duration-150 shadow-md">
+                                <span class="inline-block mr-2">⏳</span> In Development
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                ========================================================
+                CARD 2: COMPLETED PROJECT (Frontend Crystal Website)
+                ========================================================
+                -->
+                <!-- w-full ensures it takes full grid column space -->
+                <div class="project-card w-full bg-white rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#DC2626]/50 hover:scale-[1.01]" data-category="frontend">
+                    
+                    <!-- Project Image -->
+                    <div class="h-48 md:h-56 w-full">
+                        <img 
+                            src="https://placehold.co/800x450/DC2626/ffffff?text=Crystal+Website+Mockup" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/B91C1C/ffffff?text=Image+Not+Found';"
+                            alt="Crystal Website Screenshot" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                            Crystal E-commerce Frontend
+                        </h3>
+
+                        <p class="text-gray-600 mb-6 text-base">
+                            A highly polished, responsive front-end for a luxury goods e-commerce store. Built using modern **HTML/CSS**, **Bootstrap 5**, and **jQuery** for dynamic interactions.
+                        </p>
+
+                        <!-- Active Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            
+                            <!-- Source Code Button (GitHub) -->
+                            <a href="#github-crystal-link" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex-1 text-center px-6 py-3 border border-gray-300 text-sm font-semibold rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition duration-150 shadow-sm">
+                                <span class="inline-block mr-2">🔗</span> Source Code (GitHub)
+                            </a>
+
+                            <!-- Live Preview Button -->
+                            <a href="#live-crystal-link" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex-1 text-center px-6 py-3 bg-[#DC2626] text-sm font-semibold rounded-lg text-white hover:bg-[#B91C1C] transition duration-150 shadow-lg shadow-[#DC2626]/50">
+                                <span class="inline-block mr-2">🚀</span> Live Preview
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                ========================================================
+                CARD 3: COMPLETED PROJECT (Game Development)
+                ========================================================
+                -->
+                <!-- w-full ensures it takes full grid column space -->
+                <div class="project-card w-full bg-white rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-[#DC2626]/50 hover:scale-[1.01]" data-category="game-dev application">
+                    
+                    <!-- Project Image -->
+                    <div class="h-48 md:h-56 w-full">
+                        <img 
+                            src="https://placehold.co/800x450/DC2626/ffffff?text=Mini+Game+Mockup" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/B91C1C/ffffff?text=Image+Not+Found';"
+                            alt="Game Project Screenshot" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                            Arcade Style Mini-Game
+                        </h3>
+
+                        <p class="text-gray-600 mb-6 text-base">
+                            A simple, browser-based game developed using pure **JavaScript** and HTML Canvas. Focused on collision detection, state management, and basic physics simulation.
+                        </p>
+
+                        <!-- Active Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            
+                            <!-- Source Code Button (GitHub) -->
+                            <a href="#github-game-link" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex-1 text-center px-6 py-3 border border-gray-300 text-sm font-semibold rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition duration-150 shadow-sm">
+                                <span class="inline-block mr-2">🔗</span> Source Code (GitHub)
+                            </a>
+
+                            <!-- Live Preview Button -->
+                            <a href="#live-game-link" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex-1 text-center px-6 py-3 bg-[#DC2626] text-sm font-semibold rounded-lg text-white hover:bg-[#B91C1C] transition duration-150 shadow-lg shadow-[#DC2626]/50">
+                                <span class="inline-block mr-2">🚀</span> Play Now
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+    <script>
+        // JavaScript for Project Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            // Function to filter projects
+            function filterProjects(filter) {
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category').split(' ');
+                    
+                    // The CSS grid will handle the 1-column / 3-column layout.
+                    // This function only hides/shows based on the filter.
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listener for filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const filter = e.target.getAttribute('data-filter');
+
+                    // Update active button state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    // Run filter
+                    filterProjects(filter);
+                });
+            });
+
+            // Initial load filter (show all)
+            filterProjects('all');
+        });
+    </script>
+  
+    
+  <footer class="mt-20 py-8 bg-background-light dark:bg-background-dark border-t border-secondary-accent/20 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:flex justify-between items-center text-center sm:text-left">
+            <div class="mb-4 sm:mb-0">
+                <p class="text-xl font-extrabold text-background-dark dark:text-background-light">Rehman Imtiaz</p>
+                <p class="text-sm text-primary-accent dark:text-secondary-accent">Computer Science Student & Developer</p>
+            </div>
+
+            <div class="hidden md:flex space-x-6 text-md font-medium text-background-dark dark:text-background-light opacity-80">
+                <a href="index.html" class="hover:text-primary-accent transition duration-150">Home</a>
+                <a href="Project.html" class="hover:text-primary-accent transition duration-150">Projects</a>
+                <a href="Skill.html" class="hover:text-primary-accent transition duration-150">Skills</a>
+                <a href="Experince.html" class="hover:text-primary-accent transition duration-150">Experience</a>
+                <a href="Contect.html" class="hover:text-primary-accent transition duration-150">Contact</a>
+            </div>
+
+            <div class="flex justify-center sm:justify-end space-x-3 text-xl align-center text-center">
+                <a href="https://github.com/rehmanimtiaz110" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"><i data-lucide="github" class="w-7 h-6"></i></a>
+                <a href="https://www.linkedin.com/in/rehman-imtiaz/?originalSubdomain=pk" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"><i data-lucide="linkedin" class="w-7 h-6"></i></a>
+                
+                <a href="https://wa.me/+923257030010" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300">
+                    <i class="fa-brands fa-whatsapp w-7 h-6"></i>
+                </a>
+                
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 mt-6 border-t border-secondary-accent/10 pt-4 text-center">
+            <p class="text-sm opacity-60">&copy; 2025 Rehman Imtiaz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Assets/Script.js"> </script>
+
+
+ 
+</body>
+</html>

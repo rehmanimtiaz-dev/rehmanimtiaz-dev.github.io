@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehman Imtiaz | Full-Stack Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode based on 'dark' class on <html>
+            theme: {
+                extend: {
+                    colors: {
+                        // Custom Palette based on user's image
+                        'primary-dark': '#800d1c',      // Dark Red/Maroon
+                        'primary-accent': '#c8102e',    // Bright Red (Used for the main Red color)
+                        'background-light': '#f8f2e2',  // Cream/Light Beige
+                        'background-dark': '#102b46',   // Deep Navy Blue
+                        'secondary-accent': '#74a8c8',  // Light Blue/Sky Blue
+                        // Customizing the light background card color seen in the screenshot
+                        'card-light': '#ffffff',        // White
+                        'card-shadow-light': 'rgba(215, 215, 215, 0.5)', // Subtle shadow
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles for smooth transitions */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Styling the scroll to be smooth for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar styling (optional but improves aesthetics) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background-light');
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: theme('colors.background-dark');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.secondary-accent');
+            border-radius: 4px;
+        }
+
+        /* Custom utility for the red line under titles */
+        .title-line {
+            position: absolute;
+            left: 50%;
+            bottom: -8px; /* Slightly higher for a better look */
+            height: 3px; /* Slightly thinner */
+            width: 5rem;
+            background-color: theme('colors.primary-accent');
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-background-dark dark:bg-background-dark dark:text-background-light">
+<header class="sticky top-0 z-50 shadow-md bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <a href="#hero" class="text-2xl font-extrabold text-primary-accent flex items-center space-x-2 rounded-lg p-1 transition duration-300 hover:scale-[1.01]">
+            <span class="p-1 text-background-light bg-primary-accent rounded-md">RI</span>
+            <span>Rehman Imtiaz</span>
+        </a>
+
+        <div class="hidden sm:flex space-x-8 items-center text-lg font-medium">
+            <a href="index.html" class="nav-link text-primary-accent border-b-2 border-primary-accent pb-1 transition duration-150 rounded-lg p-2">Home</a>
+            
+            <a href="Project.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Projects</a>
+            <a href="Skill.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Skills</a>
+            <a href="Experince.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Experience</a>
+            
+            <a href="Contect.html" class="nav-link hover:text-primary-accent transition duration-150 rounded-lg p-2">Contact</a>
+
+            <button id="theme-toggle-desktop" class="p-2 ml-4 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                <span id="sun-moon-icon-desktop"></span>
+            </button>
+        </div>
+
+        <div class="sm:hidden flex items-center space-x-3">
+            <button id="theme-toggle-mobile" class="p-2 rounded-full bg-secondary-accent/20 dark:bg-secondary-accent/50 hover:bg-secondary-accent/40 dark:hover:bg-secondary-accent/70 transition duration-300 text-background-dark dark:text-background-light">
+                <span id="sun-moon-icon-mobile"></span>
+            </button>
+
+            <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-background-dark/10 dark:hover:bg-background-light/10 transition duration-150">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <div id="mobile-menu" class="hidden sm:hidden absolute w-full bg-background-light dark:bg-background-dark shadow-lg">
+        <a href="index.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Home</a>
+        <a href="Project.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Projects</a>
+        <a href="Skill.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Skills</a>
+        <a href="Experince.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Experience</a>
+        <a href="Contect.html" class="mobile-nav-link block px-4 py-3 text-lg font-medium hover:bg-primary-accent hover:text-background-light transition duration-150">Contact</a>
+    </div>
+</header>
+    <main class="max-w-7xl mx-auto">
+        
+        <section id="hero" class="py-20 md:py-32 px-4 min-h-screen flex justify-center items-center">
+            <div class="flex flex-col md:flex-row-reverse items-center justify-center max-w-6xl w-full">
+
+                <div class="md:w-1/3 mb-10 md:mb-0 md:ml-10 flex justify-center">
+                    <img src="Assets/my-img.jpeg" alt="Rehman Imtiaz - Profile Picture" class="rounded-full w-64 h-64 object-cover border-4 border-primary-accent shadow-2xl">
+                </div>
+
+                <div class="md:w-2/3 text-center md:text-left">
+                    <p class="text-xl font-medium text-secondary-accent mb-4">Hey there, I'm</p>
+                    <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Rehman Imtiaz</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-8 text-background-dark dark:text-primary-accent">
+                        A <span id="typing-text" class="text-primary-accent dark:text-secondary-accent font-extrabold"></span>
+                    </h2>
+                    <p class="max-w-3xl md:max-w-full mx-auto md:mx-0 text-lg mb-10 opacity-80">
+                        A passionate Computer Science professional leveraging a strong foundation in **Laravel, PHP, JavaScript, and modern web technologies (Tailwind CSS, jQuery)** to build elegant, high-performance, and responsive applications.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center md:justify-start">
+                        <a href="Project.html" class="inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-background-light bg-primary-accent rounded-xl shadow-lg hover:shadow-xl hover:bg-primary-dark transition duration-300 transform hover:scale-[1.03]">
+                            View Projects <i  class="fa-solid fa-diagram-project w-5 h-5 ml-2"> </i>
+                        </a>
+                        <a href="Contect.html" class="inline-flex items-center justify-center px-8 py-3 text-lg font-bold border-2 border-primary-accent rounded-xl transition duration-300 transform hover:scale-[1.03] hover:bg-primary-accent hover:text-background-light text-primary-accent dark:text-background-light dark:hover:text-background-light">
+                            Contact Me <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="mt-16 flex space-x-6 text-2xl justify-center md:justify-start">
+                        <a href="https://www.linkedin.com/in/rehman-imtiaz/?originalSubdomain=pk" target="_blank" class="hover:text-primary-accent transition duration-300"><i data-lucide="linkedin"></i></a>
+                        <a href="https://github.com/rehmanimtiaz110" target="_blank" class="hover:text-primary-accent transition duration-300"><i data-lucide="github"></i></a>
+                        <a href="https://wa.me/+923257030010" target="_blank"  class="fa-brands fa-whatsapp hover:text-primary-accent transition duration-300"><i ></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            // List of titles/roles to cycle through
+            const titles = [
+                "Full-Stack Web Developer",
+                "Laravel Expert",
+                "PHP & JavaScript Developer",
+                "Front-End Architect"
+            ];
+
+            const typingElement = document.getElementById('typing-text');
+            let titleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 150; // Speed to type characters (ms)
+            const deletingSpeed = 75;  // Speed to delete characters (ms)
+            const delayBetweenTitles = 1500; // Pause after typing (ms)
+
+            function typeWriter() {
+                const currentTitle = titles[titleIndex];
+                let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (isDeleting) {
+                    // DELETING MODE: Remove a character
+                    typingElement.textContent = currentTitle.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    // TYPING MODE: Add a character
+                    typingElement.textContent = currentTitle.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentTitle.length) {
+                    // Just finished typing: pause and switch to deleting
+                    speed = delayBetweenTitles;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    // Just finished deleting: switch to the next word
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % titles.length; // Cycle to the next title
+                    speed = typingSpeed;
+                }
+
+                setTimeout(typeWriter, speed);
+            }
+
+            // Start the animation when the page loads
+            window.onload = function() {
+                typeWriter();
+            };
+        </script>
+
+        <section id="about" class="py-20 md:py-28 px-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 relative">
+                About Me
+                <span class="title-line"></span>
+            </h2>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6 text-lg opacity-90">
+                    <p>I am a dedicated and results-driven **Software Developer** with a focus on building robust, scalable web applications. My journey started with a strong educational background in Computer Science, and I've continually evolved my skillset to meet the demands of modern development.</p>
+                    <p>My core expertise lies in the **Full-Stack PHP ecosystem**, particularly with **Laravel** for backend development, coupled with robust frontend skills in **JavaScript, jQuery, and responsive design using Tailwind CSS**. I excel at translating complex business requirements into clean, maintainable code.</p>
+                    <p>I have successfully completed the **ACCP Prime** program, mastering subjects like database management (MySQL), distributed version control, and building e-project-responsive web applications. I am passionate about crafting seamless user experiences and optimizing performance across all devices.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-primary-accent flex items-center"><i data-lucide="graduation-cap" class="mr-2"></i> Education</h3>
+                        <ul class="space-y-4">
+                            <li class="border-l-4 border-secondary-accent pl-4">
+                                <p class="font-bold">ACCP Prime (Term 1 & 2)</p>
+                                <p class="text-sm opacity-70">Focus on Web Development, PHP, Laravel, MySQL, jQuery, and Responsive Design.</p>
+                                <p class="text-xs text-primary-accent">2023 - 2024</p>
+                            </li>
+                            <li class="border-l-4 border-secondary-accent pl-4">
+                                <p class="font-bold">Board of Secondary Education</p>
+                                <p class="text-sm opacity-70">S.S.C. Examination (Science Group)</p>
+                                <p class="text-xs text-primary-accent">Annual 2022</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-primary-accent flex items-center"><i data-lucide="zap" class="mr-2"></i> Core Competencies</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 text-secondary-accent mt-1 flex-shrink-0"></i>Full-Stack PHP/Laravel Development</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 text-secondary-accent mt-1 flex-shrink-0"></i>JavaScript & jQuery DOM Manipulation</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 text-secondary-accent mt-1 flex-shrink-0"></i>CSS3 
+                             | Tailwind CSS for Responsive Design</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 text-secondary-accent mt-1 flex-shrink-0"></i>MySQL Database Management</li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 text-secondary-accent mt-1 flex-shrink-0"></i>Git & Distributed Version Control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+  <script src="Assets/Script.js"> </script>
+
+  <footer class="mt-20 py-8 bg-background-light dark:bg-background-dark border-t border-secondary-accent/20 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:flex justify-between items-center text-center sm:text-left">
+            <div class="mb-4 sm:mb-0">
+                <p class="text-xl font-extrabold text-background-dark dark:text-background-light">Rehman Imtiaz</p>
+                <p class="text-sm text-primary-accent dark:text-secondary-accent">Computer Science Student & Developer</p>
+            </div>
+
+            <div class="hidden md:flex space-x-6 text-md font-medium text-background-dark dark:text-background-light opacity-80">
+                <a href="index.html" class="hover:text-primary-accent transition duration-150">Home</a>
+                <a href="Project.html" class="hover:text-primary-accent transition duration-150">Projects</a>
+                <a href="Skill.html" class="hover:text-primary-accent transition duration-150">Skills</a>
+                <a href="Experince.html" class="hover:text-primary-accent transition duration-150">Experience</a>
+                <a href="Contect.html" class="hover:text-primary-accent transition duration-150">Contact</a>
+            </div>
+
+            <div class="flex justify-center sm:justify-end space-x-3 text-xl align-center text-center">
+                <a href="https://github.com/rehmanimtiaz110" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"> <i class="w-7 h-6 fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rehman-imtiaz/?originalSubdomain=pk" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300"> <i class="w-7 h-6 fa-brands fa-linkedin-in"></i></a>
+                
+                <a href="https://wa.me/+923257030010" target="_blank" class="p-2 rounded-full border border-primary-accent/50 text-background-dark dark:text-background-light hover:text-primary-accent transition duration-300">
+                    <i class="fa-brands fa-whatsapp w-7 h-6"></i>
+                </a>
+                
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 mt-6 border-t border-secondary-accent/10 pt-4 text-center">
+            <p class="text-sm opacity-60">&copy; 2025 Rehman Imtiaz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Assets/Script.js"> </script>
+
+</body>
+</html>
